@@ -23,7 +23,7 @@ for x in jobs:
     inp = input("Time for " + x + " (eg. 30 47 for 30h 47m): ")
     inp = [int(i) for i in inp.split() if i.isdigit()]
     time = inp[0] * 60
-    time += inp[1] * 3600
+    time += inp[1]
     overall += time
     file.write("playtime_addrole " + account + " " + jobId[i] +  " " + str(time) + "\n")
     i += 1
