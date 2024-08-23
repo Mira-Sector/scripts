@@ -33,6 +33,9 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    if message.author.bot:
+        return
+
     response = message_response(message)
 
     if response:
