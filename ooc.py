@@ -72,7 +72,7 @@ def message_response(message):
             return "robust"
 
     # partial message responses
-    if "based" in message.content:
+    if re.match("(?i)based",message.content):
         if random.randint(1, 6) <= 3:
             return "based on what?"
         else:
