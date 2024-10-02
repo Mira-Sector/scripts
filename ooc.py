@@ -4,6 +4,7 @@ import os
 import random
 import re
 import requests
+import datetime
 
 from quart import Quart, request
 from discord.ext import tasks
@@ -16,6 +17,8 @@ ooc_url = "https://ooc.mira-sector.xyz"
 ooc_password = os.environ["OOC_PASSWORD"]
 
 ping_channel = 1270032658763747449
+ping_time = datetime.time(18, 0)
+
 dummy_channel = 1263493042409705576
 
 discord_token = os.environ["DISCORD_TOKEN"]
@@ -26,10 +29,26 @@ client = discord.Client(intents=intents)
 ooc_message = ""
 event = asyncio.Event()
 
+async def daily_ping():
+    while True:
+        cur_time = datetime.datetime.now()
+        todays_ping = datetime.datetime.combine(cur_time.date(), ping_time)
+
+        if cur_time > todays_ping:
+            todays_ping += datetime.timedelta(days=1)
+
+        delta = (todays_ping - cur_time).total_seconds()
+        print(delta)
+        await asyncio.sleep(delta)
+
+        channel = client.get_channel(dummy_channel)
+        await channel.send("<@&1269732259112554517>")
+
 @client.event
 async def on_ready():
     print(f'We have logged in as {client.user}')
     update_status.start()
+    asyncio.create_task(daily_ping())
 
 @client.event
 async def on_message(message):
