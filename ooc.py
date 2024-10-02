@@ -15,6 +15,8 @@ ooc_channel = 1269794259574194257
 ooc_url = "https://ooc.mira-sector.xyz"
 ooc_password = os.environ["OOC_PASSWORD"]
 
+ping_channel = 1270032658763747449
+
 discord_token = os.environ["DISCORD_TOKEN"]
 
 intents = discord.Intents(messages=True, message_content=True, guilds=True)
@@ -72,15 +74,6 @@ def message_response(message):
             return "robust"
 
     # partial message responses
-    if re.match(".*(?i)based.*", message.content):
-        if random.randint(1, 6) <= 3:
-            return "based on what?"
-        else:
-            return "sigma even"
-
-    if re.match("(?i).*play.*today.*\?.*", message.content) and message.channel == "1270032658763747449":
-        return "Just ping the role <:GoDo:1269715410895507587>\n<@&1269732259112554517>"
-
     if "1984" in message.content:
         return """"⠀⠀⠀⠀⠀⠀⠀⣠⡀⠀⠀⠀⠀⠀⠀⠀⠀⢰⠤⠤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⢀⣾⣟⠳⢦⡀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠉⠉⠉⠉⠉⠒⣲⡄
@@ -95,7 +88,14 @@ def message_response(message):
 ⡞⠀⠀⠀⠀⠀⠀⠀⣄⠀⠀⠀⠀⠀⠀⡰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⢧⠀⠀⠀⠀⠀⠀⠀⠈⠣⣀⠀⠀⡰⠋⠀⠀⠀⠀⠀⠀"""
 
-    return
+    if re.match("(?i).*play.*today.*", message.content) and message.channel.id == ping_channel:
+        return "Just ping the role <:GoDo:1269715410895507587>\n<@&1269732259112554517>"
+
+    if re.match("(?i).*based.*", message.content):
+        if random.randint(1, 6) <= 3:
+            return "based on what?"
+        else:
+            return "sigma even"
 
 async def ooc_send_ooc(message):
     name = message.author.name
