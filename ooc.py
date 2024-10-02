@@ -78,6 +78,9 @@ def message_response(message):
         else:
             return "sigma even"
 
+    if re.match("(?i).*play.*today.*\?.*", message.content) and message.channel == "1270032658763747449":
+        return "Just ping the role <:GoDo:1269715410895507587>\n<@&1269732259112554517>"
+
     if "1984" in message.content:
         return """"⠀⠀⠀⠀⠀⠀⠀⣠⡀⠀⠀⠀⠀⠀⠀⠀⠀⢰⠤⠤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⢀⣾⣟⠳⢦⡀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠉⠉⠉⠉⠉⠒⣲⡄
