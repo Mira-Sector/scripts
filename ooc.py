@@ -108,7 +108,7 @@ def message_response(message):
 ⡞⠀⠀⠀⠀⠀⠀⠀⣄⠀⠀⠀⠀⠀⠀⡰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⢧⠀⠀⠀⠀⠀⠀⠀⠈⠣⣀⠀⠀⡰⠋⠀⠀⠀⠀⠀⠀"""
 
-    if re.match("(?i).*play.*today.*", message.content) and (message.channel.id == ping_channel or message.channel.id == dummy_channel):
+    if re.match("(?i).*play.*today.*", message.content) and (message.channel.id == ping_channel or message.channel.id == dummy_channel) and not message.content.contains("<@&1269732259112554517>"):
         return "Just ping the role <:GoDo:1269715410895507587>\n<@&1269732259112554517>"
 
     if re.match("(?i).*based.*", message.content):
