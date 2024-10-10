@@ -29,26 +29,25 @@ client = discord.Client(intents=intents)
 ooc_message = ""
 event = asyncio.Event()
 
+@tasks.loop(minutes=1)
 async def daily_ping():
-    while True:
-        cur_time = datetime.datetime.now()
-        todays_ping = datetime.datetime.combine(cur_time.date(), ping_time)
+    cur_time = datetime.datetime.now()
+    todays_ping = datetime.datetime.combine(cur_time.date(), ping_time)
 
-        if cur_time > todays_ping:
-            todays_ping += datetime.timedelta(days=1)
+    if cur_time > todays_ping:
+        todays_ping += datetime.timedelta(days=1)
 
-        delta = (todays_ping - cur_time).total_seconds()
-        print(delta)
-        await asyncio.sleep(delta)
+    delta = (todays_ping - cur_time).total_seconds()
 
-        channel = client.get_channel(dummy_channel)
+    if delta <= 60:
+        channel = client.get_channel(ping_channel)
         await channel.send("<@&1269732259112554517>")
 
 @client.event
 async def on_ready():
     print(f'We have logged in as {client.user}')
     update_status.start()
-    asyncio.create_task(daily_ping())
+    daily_ping.start()
 
 @client.event
 async def on_message(message):
@@ -69,7 +68,7 @@ async def on_message(message):
 
     await ooc_send_ooc(message)
 
-@tasks.loop(seconds = 120)
+@tasks.loop(minutes=1)
 async def update_status():
     get_request = server_url + "/status"
     request = requests.get(get_request)
