@@ -86,6 +86,9 @@ async def update_status():
 
 def message_response(message):
     # full message responses
+    if "http" in message.content:
+        return
+
     match message.content:
         case ":3":
             return ":3"
@@ -93,7 +96,7 @@ def message_response(message):
             return "robust"
 
     # partial message responses
-    if "1984" in message.content and "https" not in message.content:
+    if "1984" in message.content:
         return """⠀⠀⠀⠀⠀⠀⠀⣠⡀⠀⠀⠀⠀⠀⠀⠀⠀⢰⠤⠤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⢀⣾⣟⠳⢦⡀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠉⠉⠉⠉⠉⠒⣲⡄
 ⠀⠀⠀⠀⠀⣿⣿⣿⡇ ⡱⠲⢤⣀⠀⠀⠀⢸⠀⠀⠀1984⠀⣠⠴⠊⢹⠁
