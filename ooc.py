@@ -86,6 +86,9 @@ async def update_status():
 
 def message_response(message):
     # full message responses
+    if "http" in message.content:
+        return
+
     match message.content:
         case ":3":
             return ":3"
