@@ -93,7 +93,7 @@ def message_response(message):
             return "robust"
 
     # partial message responses
-    if "1984" in message.content:
+    if "1984" in message.content and "https" not in message.content:
         return """⠀⠀⠀⠀⠀⠀⠀⣠⡀⠀⠀⠀⠀⠀⠀⠀⠀⢰⠤⠤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⢀⣾⣟⠳⢦⡀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠉⠉⠉⠉⠉⠒⣲⡄
 ⠀⠀⠀⠀⠀⣿⣿⣿⡇ ⡱⠲⢤⣀⠀⠀⠀⢸⠀⠀⠀1984⠀⣠⠴⠊⢹⠁
