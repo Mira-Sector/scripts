@@ -4,8 +4,46 @@ import platform
 system = platform.system()
 username = os.getlogin()
 
-jobs = ["atmos", "bartender", "botanist", "cap", "cargo tech", "chaplain", "chef", "chem", "ce", "cmo", "clown", "borg", "detective", "hop", "hos", "janitor", "lawyer", "librarian", "med doctor", "med intern", "mime", "musician", "paramed", "passenger", "psycologist", "qm", "reporter", "research assistant", "rd", "salvage", "scientist", "sec cadet", "sec off", "service worker", "engi", "technical assistant", "warden", "boxer", "zookeeper"]
-jobId = ["JobAtmosphericTechnician", "JobBartender", "JobBorg", "JobBotanist", "JobCaptain", "JobCargoTechnician", "JobChaplain", "JobChef", "JobChemist", "JobChiefEngineer", "JobChiefMedicalOfficer", "JobClown", "JobDetective", "JobHeadOfPersonnel", "JobHeadOfSecurity", "JobJanitor", "JobLawyer", "JobLibrarian", "JobMedicalDoctor", "JobMedicalIntern", "JobMime", "JobMusician", "JobPassenger", "JobParamedic", "JobPsychologist", "JobQuartermaster", "JobReporter", "JobResearchAssistant", "JobResearchDirector", "JobSalvageSpecialist", "JobScientist", "JobSecurityCadet", "JobSecurityOfficer", "JobServiceWorker", "JobStationEngineer", "JobTechnicalAssistant", "JobWarden", "JobBoxer", "JobZookeeper"]
+jobs = { "JobResearchAssistant": "research assistant",
+        "JobPsychologist": "psychologist",
+        "JobChiefEngineer": "ce",
+        "JobReporter": "reporter",
+        "JobZookeeper": "zookeeper",
+        "JobMedicalIntern": "med intern",
+        "JobStationAi": "ai",
+        "JobWarden": "warden",
+        "JobBoxer": "boxer",
+        "JobScientist": "sci",
+        "JobStationEngineer": "engi",
+        "JobSecurityOfficer": "sec off", 
+        "JobMusician": "musician",
+        "JobChaplain": "chaplain",
+        "JobChef": "chef",
+        "JobSalvageSpecialist": "savl",
+        "JobChemist": "chem",
+        "JobMedicalDoctor": "med doctor",
+        "JobHeadOfSecurity": "hos",
+        "JobTechnicalAssistant": "technical assistant",
+        "JobResearchDirector": "rd",
+        "JobMime": "mime",
+        "JobParamedic": "paramed",
+        "JobCaptain": "cap",
+        "JobBorg": "cyborg",
+        "JobCargoTechnician": "cargo tech",
+        "JobHeadOfPersonnel": "hop",
+        "JobServiceWorker": "service worker",
+        "JobClown": "clown",
+        "JobDetective": "det",
+        "JobLawyer": "lawyer",
+        "JobAtmosphericTechnician": "atmos",
+        "JobBartender": "bartender",
+        "JobBotanist": "botanist",
+        "JobQuartermaster": "qm",
+        "JobJanitor": "janitor",
+        "JobPassenger": "passenger",
+        "JobSecurityCadet": "sec cadet",
+        "JobLibrarian": "librarian",
+        "JobChiefMedicalOfficer": "cmo" }
 
 overall = 0
 
@@ -19,9 +57,9 @@ else:
     file = open(path + account, "w")
 
 i = 0
-for x in jobs:
+for id, name in jobs.items():
     while True:
-        inp = input("Time for " + x + " (eg. 30 47 for 30h 47m): ")
+        inp = input("Time for " + name + " (eg. 30 47 for 30h 47m): ")
 
         inp = inp.split()
 
@@ -37,7 +75,7 @@ for x in jobs:
         time = int(inp[0]) * 60
         time += int(inp[1])
         overall += time
-        file.write("playtime_addrole " + account + " " + jobId[i] +  " " + str(time) + "\n")
+        file.write("playtime_addrole " + account + " " + id +  " " + str(time) + "\n")
         i += 1
         break
 
