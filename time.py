@@ -20,13 +20,26 @@ else:
 
 i = 0
 for x in jobs:
-    inp = input("Time for " + x + " (eg. 30 47 for 30h 47m): ")
-    inp = [int(i) for i in inp.split() if i.isdigit()]
-    time = inp[0] * 60
-    time += inp[1]
-    overall += time
-    file.write("playtime_addrole " + account + " " + jobId[i] +  " " + str(time) + "\n")
-    i += 1
+    while True:
+        inp = input("Time for " + x + " (eg. 30 47 for 30h 47m): ")
+
+        inp = inp.split()
+
+        if (len(inp) != 2):
+            continue
+
+        if (not inp[0].isdigit):
+            continue
+
+        if (not inp[1].isdigit):
+            continue
+
+        time = int(inp[0]) * 60
+        time += int(inp[1])
+        overall += time
+        file.write("playtime_addrole " + account + " " + jobId[i] +  " " + str(time) + "\n")
+        i += 1
+        break
 
 file.write("playtime_addoverall " + account + " " + str(overall))
 file.close()
